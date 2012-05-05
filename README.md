@@ -1,4 +1,4 @@
-# Desktoppr Chrome Extension
+# Chrome Extension for Desktoppr
 
 Discover awesome new wallpapers by randomly displaying them on each new tab. High quality wallpapers are provided by [Desktoppr](http://desktoppr.co/). This is not an official extension.
 

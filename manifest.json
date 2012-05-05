@@ -1,7 +1,7 @@
 {
   "name": "Desktoppr",
   "version": "0.0.1",
-  "description": "Displays a random wallpaper on each new tab.",
+  "description": "Discover awesome new wallpapers by randomly displaying them on each new tab.",
   "permissions": ["https://api.desktoppr.co/"],
   "background": {
     "scripts": ["background.js"]

@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Displays a random wallpaper on each new tab.",
   "permissions": ["https://api.desktoppr.co/"],
-  "background_page": "background.html",
+  "background": {
+    "scripts": ["background.js"]
+  },
   "chrome_url_overrides": {
     "newtab": "tab.html"
   }

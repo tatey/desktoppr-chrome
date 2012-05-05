@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>New Tab</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+      body {
+        background-size: cover;
+      }
+    </style>
+    <script type="text/javascript">
+      (function() {
+        var Cache = function() {
+          this.storage = window.localStorage;
+          this.images  = JSON.parse(this.storage.getItem('cache') || '[{"url":"tab.png"}]');
+
+          this.getRandomImage = function() {
+            var index = Math.round(Math.random() * (this.images.length - 1));
+            return this.images[index];
+          };
+
+          return this;
+        };
+
+        var Tab = function() {
+          this.cache   = new Cache();
+          this.element = document.getElementsByTagName('body')[0];
+
+          this.setBackgroundImage = function() {
+            var image = this.cache.getRandomImage();
+            this.element.setAttribute('style', 'background-image: url(' + image.url + ')');
+          };
+
+          return this;
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+          new Tab().setBackgroundImage();
+        });
+      }).call(this);
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

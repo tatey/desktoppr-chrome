@@ -2,17 +2,17 @@ var API = {
   BaseURL: function() {
     this.protocol = 'https';
     this.host     = 'api.desktoppr.co';
+    this.version  = '1';
 
     this.urlByAppendingPath = function(path) {
-      return this.protocol + '://' + this.host + path;
+      return this.protocol + '://' + this.host + '/1' + path ;
     };
 
     return this;
   },
 
-  User: function(id, username) {
+  User: function(username) {
     this.baseURL  = new API.BaseURL();
-    this.id       = id;
     this.username = username;
 
     this.getRandomWallpaperURL = function(callback) {
@@ -23,7 +23,7 @@ var API = {
           callback(json.response.image.url);
         }
       }
-      xhr.open("GET", this.baseURL.urlByAppendingPath('/' + this.id + '/users/' + this.username + '/wallpapers/random'), true);
+      xhr.open("GET", this.baseURL.urlByAppendingPath('/users/' + this.username + '/wallpapers/random'), true);
       xhr.send();
     };
   }
@@ -42,6 +42,10 @@ var Cache = function() {
     this.storage.setItem('cache', JSON.stringify(this.images));
   };
 
+  this.username = function() {
+    return this.storage.getItem('username') || 'keithpitt';
+  }
+
   return this;
 };
 
@@ -49,7 +53,7 @@ var Loader = function() {
   var _isExecuting = false;
 
   this.cache = new Cache();
-  this.user  = new API.User('1', 'keithpitt');
+  this.user  = new API.User(this.cache.username());
 
   this.load = function() {
     if (_isExecuting) return;

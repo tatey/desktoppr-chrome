@@ -6,6 +6,7 @@
   "background": {
     "scripts": ["background.js"]
   },
+  "options_page": "options.html",
   "icons": {
     "48": "icon48.png",
     "128": "icon128.png"

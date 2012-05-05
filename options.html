@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Desktoppr Options</title>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+      (function() {
+        var Input = function(option, element) {
+          var _this = this;
+
+          this.storage = window.localStorage;
+
+          element.value = this.storage.getItem(option);
+
+          element.addEventListener('keyup', function(e) {
+            _this.storage.setItem(option, e.target.value);
+          });
+
+          return this;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+          new Input('username', document.getElementsByTagName('input')[0]);
+        });
+      }).call(this);
+    </script>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <label>
+          Username
+          <input type="text">
+        </label>
+      </fieldset>
+    </form>
+  </body>
+</html>

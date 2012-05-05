@@ -26,16 +26,25 @@
           this.cache   = new Cache();
           this.element = document.getElementsByTagName('body')[0];
 
+          this.notifyBackgroundPage = function() {
+            chrome.extension.getBackgroundPage().tabDidLoad();
+          };
+
           this.setBackgroundImage = function() {
             var image = this.cache.getRandomImage();
             this.element.setAttribute('style', 'background-image: url(' + image.url + ')');
+          };
+
+          this.run = function() {
+            this.notifyBackgroundPage();
+            this.setBackgroundImage();
           };
 
           return this;
         };
 
         document.addEventListener('DOMContentLoaded', function() {
-          new Tab().setBackgroundImage();
+          new Tab().run();
         });
       }).call(this);
     </script>
